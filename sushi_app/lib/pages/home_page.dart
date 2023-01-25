@@ -120,21 +120,7 @@ class _HomePageState extends State<HomePage> {
                       ],
                     );
                   })),
-          // ),
-          // Row(
-          //   children: [
-          //     Container(
-          //       height: 40,
-          //       width: 40,
-          //       alignment: AlignmentGeomet,
-          //       decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.white,
-
-          //       ),
-          //       child: FaIcon(FontAwesomeIcons.fish),
-          //     )
-
-          // )
-
+                  
           //top Sushi
         ])));
   }
