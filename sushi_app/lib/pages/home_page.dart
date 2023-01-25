@@ -9,18 +9,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-    List categories =[
-    
+  List categories = [
+    {"icon": FontAwesomeIcons.fish, "name": "Salmon"},
+    {"icon": FontAwesomeIcons.fishFins, "name": "Caviar"},
+    {"icon": FontAwesomeIcons.bowlRice, "name": "Rice"},
+    {"icon": FontAwesomeIcons.octopusDeploy, "name": "Octopus"},
+    {"icon": FontAwesomeIcons.shrimp, "name": "Shrimp"},
   ];
-
-  // Widget _buildCategory(int index) {
-  //   return Container(
-  //     height: 60.0,
-  //     width: 60.0,
-  //     decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.white),
-  //     child: Icon(categories[index]),
-  //   );
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -101,14 +96,44 @@ class _HomePageState extends State<HomePage> {
           ),
           SizedBox(height: 15),
 
-          Row(
-            children: [
-              Container(
-                decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.white),
-                child: FaIcon(FontAwesomeIcons.fish),
-              )
-            ],
-          )
+          Container(
+            margin: EdgeInsets.only(left: 20, right: 20),
+              height: 75.0,
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: categories.length,
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.fromLTRB(8, 12, 8, 8),
+                          margin: EdgeInsets.symmetric(horizontal: 12),
+                          child: FaIcon(
+                            categories[index]["icon"],
+                          ),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Text(categories[index]["name"]),
+                      ],
+                    );
+                  })),
+          // ),
+          // Row(
+          //   children: [
+          //     Container(
+          //       height: 40,
+          //       width: 40,
+          //       alignment: AlignmentGeomet,
+          //       decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.white,
+
+          //       ),
+          //       child: FaIcon(FontAwesomeIcons.fish),
+          //     )
+
+          // )
 
           //top Sushi
         ])));
