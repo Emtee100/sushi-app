@@ -9,12 +9,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List categories = [
-    FontAwesomeIcons.fish,
-    FontAwesomeIcons.fishFins,
-    FontAwesomeIcons.bowlRice,
-    FontAwesomeIcons.octopusDeploy,
-    FontAwesomeIcons.shrimp,
+    List categories =[
+    
   ];
 
   // Widget _buildCategory(int index) {
@@ -105,22 +101,14 @@ class _HomePageState extends State<HomePage> {
           ),
           SizedBox(height: 15),
 
-             
-                  ListView.builder(
-                      itemCount: categories.length,
-                      scrollDirection: Axis.horizontal,
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return Container(
-                          child: categories[index],
-                          decoration: BoxDecoration(
-                              color: Colors.white, shape: BoxShape.circle),
-                        );
-                      }),
-                 
-              
-            
-          
+          Row(
+            children: [
+              Container(
+                decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+                child: FaIcon(FontAwesomeIcons.fish),
+              )
+            ],
+          )
 
           //top Sushi
         ])));
