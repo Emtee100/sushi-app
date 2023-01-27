@@ -3,6 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sushi_app/pages/util/search_bar.dart';
 
+import '../models/sushi_model.dart';
+
 class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
@@ -28,7 +30,7 @@ class _HomePageState extends State<HomePage> {
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             // options button
-            SizedBox(height: 35),
+            SizedBox(height: 20),
 
             Padding(
               padding: const EdgeInsets.only(left: 25),
@@ -45,7 +47,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
 
-            SizedBox(height: 25),
+            SizedBox(height: 20),
             // greeting
 
             Padding(
@@ -57,7 +59,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
 
-            SizedBox(height: 25),
+            SizedBox(height: 20),
 
             // main greeting
             Padding(
@@ -65,15 +67,15 @@ class _HomePageState extends State<HomePage> {
               child: Text(
                 'What is your favorite sushi?',
                 style: GoogleFonts.montserrat(
-                    fontSize: 35, fontWeight: FontWeight.w600),
+                    fontSize: 30, fontWeight: FontWeight.w600),
               ),
             ),
-            SizedBox(height: 25),
+            SizedBox(height: 20),
 
             // Search bar
             searchBar(),
 
-            SizedBox(height: 25),
+            SizedBox(height: 20),
             // categories
             Padding(
               padding: const EdgeInsets.only(left: 25, right: 25),
@@ -125,10 +127,10 @@ class _HomePageState extends State<HomePage> {
                                     ? Color.fromARGB(255, 31, 39, 53)
                                     : Colors.white,
                               ),
-                              child: FaIcon(
-                                categories[index]["icon"],
-                                color: _selectedIndex == index?Colors.white: Color.fromARGB(255, 31, 39, 53)
-                              ),
+                              child: FaIcon(categories[index]["icon"],
+                                  color: _selectedIndex == index
+                                      ? Colors.white
+                                      : Color.fromARGB(255, 31, 39, 53)),
                             ),
                           ),
                           Text(categories[index]["name"]),
@@ -137,6 +139,61 @@ class _HomePageState extends State<HomePage> {
                     })),
 
             //top Sushi
+            SizedBox(height: 15),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Top Sushi",
+                      style: GoogleFonts.montserrat(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                      )),
+                  TextButton(
+                      onPressed: () => print("See all"),
+                      child: Text("See all",
+                          style: GoogleFonts.montserrat(
+                            fontWeight: FontWeight.w400,
+                          )))
+                ],
+              ),
+            ),
+
+            SizedBox(height: 2),
+
+            Container(
+              height: 215,
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: topSushi.length,
+                  itemBuilder: ((context, i) {
+                    return Container(
+                      margin: EdgeInsets.symmetric(horizontal: 20),
+                      height: 215,
+                      width: 154,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(15)),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Image.asset(topSushi[i].imageUrl),
+                          Text(topSushi[i].title,
+                          style: GoogleFonts.montserrat(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 15.0,
+                            color: Color.fromARGB(255, 31, 39, 53)),
+                          ),
+                          Text(topSushi[i].description),
+                          Text(topSushi[i].price),
+                        ],
+                      ),
+                    );
+                  })),
+            )
           ]),
         )));
   }
