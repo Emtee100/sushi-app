@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             // options button
-            SizedBox(height: 20),
+            SizedBox(height: 5),
 
             Padding(
               padding: const EdgeInsets.only(left: 25),
@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
 
-            SizedBox(height: 20),
+            SizedBox(height: 15),
             // greeting
 
             Padding(
@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
 
-            SizedBox(height: 20),
+            SizedBox(height: 15),
 
             // main greeting
             Padding(
@@ -70,12 +70,12 @@ class _HomePageState extends State<HomePage> {
                     fontSize: 30, fontWeight: FontWeight.w600),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 15),
 
             // Search bar
             searchBar(),
 
-            SizedBox(height: 20),
+            SizedBox(height: 15),
             // categories
             Padding(
               padding: const EdgeInsets.only(left: 25, right: 25),
@@ -139,7 +139,7 @@ class _HomePageState extends State<HomePage> {
                     })),
 
             //top Sushi
-            SizedBox(height: 15),
+            SizedBox(height: 10),
 
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -164,31 +164,75 @@ class _HomePageState extends State<HomePage> {
             SizedBox(height: 2),
 
             Container(
-              height: 215,
+              height: 255.0,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: topSushi.length,
                   itemBuilder: ((context, i) {
                     return Container(
                       margin: EdgeInsets.symmetric(horizontal: 20),
-                      height: 215,
-                      width: 154,
+                      height: 250.0,
+                      width: 180.0,
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(15)),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Image.asset(topSushi[i].imageUrl),
-                          Text(topSushi[i].title,
-                          style: GoogleFonts.montserrat(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15.0,
-                            color: Color.fromARGB(255, 31, 39, 53)),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  topSushi[i].title,
+                                  style: GoogleFonts.montserrat(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 18.0,
+                                      color: Color.fromARGB(255, 31, 39, 53)),
+                                ),
+                                Text(
+                                  topSushi[i].description,
+                                  style: GoogleFonts.rubik(
+                                      fontWeight: FontWeight.w100,
+                                      // fontSize: 15.0,
+                                      color: Color.fromARGB(255, 31, 39, 53)),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(right:20.0,top: 10.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        topSushi[i].price,
+                                        style: GoogleFonts.rubik(
+                                            fontWeight: FontWeight.w500,
+                                            // fontSize: 15.0,
+                                            color:
+                                                Color.fromARGB(255, 31, 39, 53)),
+                                      ),
+                                      Container(
+                                        padding: EdgeInsets.all(10.0),
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(25.0),
+                                            color:
+                                                Color.fromARGB(255, 31, 39, 53)),
+                                        child: Text("Order",
+                                        style: GoogleFonts.rubik(
+                                            fontWeight: FontWeight.w400,
+                                            color:
+                                                Colors.white),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                          Text(topSushi[i].description),
-                          Text(topSushi[i].price),
                         ],
                       ),
                     );

@@ -1,4 +1,4 @@
-class SushiCart{
+class SushiCart {
   String imageUrl;
   String title;
   String description;
@@ -10,10 +10,9 @@ class SushiCart{
     required this.description,
     required this.price,
   });
-
 }
 
-List <SushiCart> topSushi =[
+List<SushiCart> topSushi = [
   SushiCart(
     imageUrl: "assets/images/images-removebg-preview.png",
     title: "Sushi Octopus",
@@ -21,9 +20,9 @@ List <SushiCart> topSushi =[
     price: "\$6.50",
   ),
   SushiCart(
-    imageUrl: "assets/images/sushi-roll-on-slate-min-removebg-preview.png", 
-    title: "Sushi Salmon", 
-    description: "Rice + Salmon", 
-    price: "\$8.50")
+      imageUrl:
+          "assets/images/ahtziri-lagarde-yQK3t9uQlX0-unsplash__1_-removebg-preview.png",
+      title: "Sushi Salmon",
+      description: "Rice + Salmon",
+      price: "\$8.50")
 ];
-
