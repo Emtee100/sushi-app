@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sushi_app/pages/first_sushi.dart';
+import 'package:sushi_app/pages/second_sushi.dart';
 import 'package:sushi_app/pages/util/search_bar.dart';
 
 import '../models/sushi_model.dart';
@@ -19,6 +21,7 @@ class _HomePageState extends State<HomePage> {
     {"icon": FontAwesomeIcons.shrimp, "name": "Shrimp"},
   ];
 
+  int _itemSelected = 0;
   int _selectedIndex = 0;
 
   @override
@@ -161,79 +164,108 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
 
-            SizedBox(height: 2),
+            SizedBox(height: 2.0),
 
             Container(
               height: 255.0,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: topSushi.length,
-                  itemBuilder: ((context, i) {
-                    return Container(
-                      margin: EdgeInsets.symmetric(horizontal: 20),
-                      height: 250.0,
-                      width: 180.0,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Image.asset(topSushi[i].imageUrl),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  topSushi[i].title,
-                                  style: GoogleFonts.montserrat(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 18.0,
-                                      color: Color.fromARGB(255, 31, 39, 53)),
-                                ),
-                                Text(
-                                  topSushi[i].description,
-                                  style: GoogleFonts.rubik(
-                                      fontWeight: FontWeight.w100,
-                                      // fontSize: 15.0,
-                                      color: Color.fromARGB(255, 31, 39, 53)),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(right:20.0,top: 10.0),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        topSushi[i].price,
-                                        style: GoogleFonts.rubik(
-                                            fontWeight: FontWeight.w500,
-                                            // fontSize: 15.0,
-                                            color:
-                                                Color.fromARGB(255, 31, 39, 53)),
-                                      ),
-                                      Container(
-                                        padding: EdgeInsets.all(10.0),
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(25.0),
-                                            color:
-                                                Color.fromARGB(255, 31, 39, 53)),
-                                        child: Text("Order",
-                                        style: GoogleFonts.rubik(
-                                            fontWeight: FontWeight.w400,
-                                            color:
-                                                Colors.white),
-                                        ),
-                                      ),
-                                    ],
+                  itemBuilder: ((context, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _itemSelected = index;
+                        });
+                        switch (_itemSelected) {
+                          case 0:
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SushiOcto()));
+                            break;
+                          case 1:
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: ((context) => SushiSalmon())));
+                            break;
+                          default:
+                        }
+                      },
+                      child: Container(
+                        margin: EdgeInsets.symmetric(horizontal: 20),
+                        height: 250.0,
+                        width: 180.0,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(15)),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Image.asset(topSushi[index].imageUrl),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    topSushi[index].title,
+                                    style: GoogleFonts.montserrat(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 18.0,
+                                        color: Color.fromARGB(255, 31, 39, 53)),
                                   ),
-                                ),
-                              ],
+                                  Text(
+                                    topSushi[index].description,
+                                    style: GoogleFonts.rubik(
+                                        fontWeight: FontWeight.w100,
+                                        // fontSize: 15.0,
+                                        color: Color.fromARGB(255, 31, 39, 53)),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        right: 20.0, top: 10.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          topSushi[index].price,
+                                          style: GoogleFonts.rubik(
+                                              fontWeight: FontWeight.w500,
+                                              // fontSize: 15.0,
+                                              color: Color.fromARGB(
+                                                  255, 31, 39, 53)),
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            print("Order");
+                                          },
+                                          child: Container(
+                                            padding: EdgeInsets.all(10.0),
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(20.0),
+                                                color: Color.fromARGB(
+                                                    255, 31, 39, 53)),
+                                            child: Text(
+                                              "Order",
+                                              style: GoogleFonts.rubik(
+                                                  fontWeight: FontWeight.w400,
+                                                  color: Colors.white),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     );
                   })),
