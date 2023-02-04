@@ -18,7 +18,7 @@ class _SushiOctoState extends State<SushiOcto> {
   ];
 
   List<int> quantity = [6, 12, 24];
-
+  bool liked = false;
   int _selectedIndex = 0;
 
   @override
@@ -28,7 +28,7 @@ class _SushiOctoState extends State<SushiOcto> {
       body: SafeArea(
         child: Column(
           children: [
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -52,14 +52,14 @@ class _SushiOctoState extends State<SushiOcto> {
                 Padding(
                   padding: const EdgeInsets.only(right: 25),
                   child: GestureDetector(
-                    onTap: (() {
-                      print("Options clicked");
-                    }),
+                    onTap: () => print("Options clicked"),
                     child: Container(
-                      padding: EdgeInsets.all(14),
+                      padding: const EdgeInsets.all(14),
                       decoration: BoxDecoration(
                           color: Colors.white, shape: BoxShape.circle),
-                      child: FaIcon(FontAwesomeIcons.heart),
+                      child: FaIcon(
+                        FontAwesomeIcons.heart,
+                      ),
                     ),
                   ),
                 ),
@@ -68,9 +68,16 @@ class _SushiOctoState extends State<SushiOcto> {
 
             SizedBox(height: 30.0),
             //title, subtitle and rating
-            Text(topSushi[0].title),
+            Text(
+              topSushi[0].title,
+              style: GoogleFonts.montserrat(
+                  fontSize: 25, fontWeight: FontWeight.w600),
+            ),
             SizedBox(height: 10),
-            Text(topSushi[0].description),
+            Text(
+              topSushi[0].description,
+              style: GoogleFonts.montserrat(fontWeight: FontWeight.w500),
+            ),
             //rating
             SizedBox(height: 25),
             Text("⭐⭐⭐⭐"),
@@ -109,7 +116,12 @@ class _SushiOctoState extends State<SushiOcto> {
             SizedBox(
               height: 25.0,
             ),
-            Text("Choose the quantity"),
+            Text(
+              "Choose the quantity:",
+              style: GoogleFonts.montserrat(
+                fontSize: 15,
+              ),
+            ),
             SizedBox(
               height: 20.0,
             ),
@@ -154,24 +166,59 @@ class _SushiOctoState extends State<SushiOcto> {
             ),
             Container(
               decoration: BoxDecoration(
-                  color: Colors.blue, borderRadius: BorderRadius.circular(15)),
+                  color: Colors.white, borderRadius: BorderRadius.circular(15)),
               margin: const EdgeInsets.symmetric(horizontal: 25.0),
               height: 110,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text("${quantity[_selectedIndex] * 4}.00"),
-                    Text("Total Price")
-                  ],
-                ),
-                Container(
-                  decoration:
-                      BoxDecoration(color: Color.fromARGB(255, 31, 39, 53)),
-                  child: Text("Place Order"),
-                )
-              ]),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "\$${quantity[_selectedIndex] * 4}.00",
+                          style: GoogleFonts.montserrat(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            color: Color.fromARGB(255, 31, 39, 53),
+                          ),
+                        ),
+                        Text(
+                          "Total Price",
+                          style: GoogleFonts.montserrat(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w300,
+                              color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                    GestureDetector(
+                      onTap: () => print("Order placed"),
+                      child: Container(
+                          padding: EdgeInsets.all(20.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(35.0),
+                            color: Color.fromARGB(255, 31, 39, 53),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Place Order  ",
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              FaIcon(
+                                FontAwesomeIcons.boxesPacking,
+                                color: Colors.white,
+                              )
+                            ],
+                          )),
+                    )
+                  ]),
             )
           ],
         ),

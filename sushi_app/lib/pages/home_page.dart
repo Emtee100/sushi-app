@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   TextButton(
-                      onPressed: () => throw Exception(),
+                      onPressed: () => print("see all"),
                       child: Text(
                         "See all",
                         style:
